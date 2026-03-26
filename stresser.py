@@ -40,7 +40,8 @@ formatter = logging.Formatter(
 file_handler = RotatingFileHandler(
     'attack.log',
     maxBytes=10*1024*1024,
-    backupCount=5
+    backupCount=5,
+    encoding='utf-8'
 )
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
@@ -55,22 +56,22 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 def log_info(msg):
-    logger.info(f"ℹ️  {msg}")
+    logger.info(f"INFO: {msg}")
 
 def log_success(msg):
-    logger.info(f"✅ {msg}")
+    logger.info(f"SUCCESS: {msg}")
 
 def log_error(msg):
-    logger.error(f"❌ {msg}")
+    logger.error(f"ERROR: {msg}")
 
 def log_warning(msg):
-    logger.warning(f"⚠️  {msg}")
+    logger.warning(f"WARNING: {msg}")
 
 def log_debug(msg):
-    logger.debug(f"🔍 {msg}")
+    logger.debug(f"DEBUG: {msg}")
 
 def log_attack(msg):
-    logger.info(f"🔥 {msg}")
+    logger.info(f"ATTACK: {msg}")
 
 # ==== НАСТРОЙКИ ====
 # Список запрещенных сайтов
@@ -90,12 +91,12 @@ def is_blacklisted(url):
             return True
     return False
 
-TOKEN = os.getenv("BOT_TOKEN", "")
+TOKEN = os.getenv("BOT_TOKEN", "8333226996:AAG47gdt8ZJ-8RqqjzEhKzNM10Ut0E1qH5c")
 bot = telebot.TeleBot(TOKEN, skip_pending=True)
 
 # Главные админы (используются для создания ключей и одобрения заявок)
 MAIN_ADMINS = {
-    123456789: "admin"  # Замените на ваш Telegram ID
+    5946555648: "admin"  # Замените на ваш Telegram ID
 }
 
 # Хранилище данных
@@ -266,7 +267,7 @@ def create_keys(amount: int, key_type: str, creator_id: int):
     return keys
 
 def log_user_action(user_id: int, username: str, action: str):
-    log_info(f"👤 [{username or 'NoUsername'}] ID:{user_id} — {action}")
+    log_info(f"[{username or 'NoUsername'}] ID:{user_id} — {action}")
 
 # ==== DNS и парсинг ====
 def resolve_dns(host: str) -> str:
