@@ -91,12 +91,12 @@ def is_blacklisted(url):
             return True
     return False
 
-TOKEN = os.getenv("BOT_TOKEN", "8333226996:AAG47gdt8ZJ-8RqqjzEhKzNM10Ut0E1qH5c")
+TOKEN = os.getenv("BOT_TOKEN", "")
 bot = telebot.TeleBot(TOKEN, skip_pending=True)
 
 # Главные админы (используются для создания ключей и одобрения заявок)
 MAIN_ADMINS = {
-    5946555648: "admin"  # Замените на ваш Telegram ID
+    123456789: "admin"  # Замените на ваш Telegram ID
 }
 
 # Хранилище данных
